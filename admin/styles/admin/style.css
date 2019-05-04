@@ -1,0 +1,85 @@
+.action-icon{
+	font-size: 25px !important;
+	color: #5A6169;
+}
+
+ #targetLayer {
+	 width: 250px;
+	 height: 320px;
+	 margin: 20px auto 0 auto;
+	 border: 5px solid skyblue;
+	 border-radius: 9px;
+	 background-repeat: no-repeat;
+	 background-position: center;
+	 background-size: cover;
+	 background-color: #f4f5f757;
+	 position: relative;
+ }
+
+#targetLayer .glyphicon {
+	position: absolute;
+	top: 108px;
+	left: 75px;
+	font-size: 65pt;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+	transform-origin-x: center;
+	-webkit-transform-origin-x: center;
+}
+
+#targetLayer .glyphicon:hover {
+	transform: scale(1.02);
+	text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+#targetLayer button:active .glyphicon {
+	transform: scale(.98);
+}
+
+#targetLayer .input {
+	position: absolute;
+	top: 100px;
+	left: 66px;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	opacity: 0;
+}
+
+#targetLayer input {
+	display: none;
+}
+
+.dot-required {
+	color: red;
+}
+
+.parent-zone {
+	margin: 35px -30px 15px -30px;
+	padding: 30px 15px 10px 15px;
+	border-radius: 5px;
+	box-shadow: 0 .5px 4px rgba(0,0,0,0.2);
+	position: relative;
+	background-color: #f4f5f757;
+}
+.parent-zone .title-absolute span{
+	position: absolute;
+	top: -16px;
+	left: 15px;
+	background: white;
+	color: skyblue;
+	text-transform: capitalize;
+	padding: 4px 10px;
+	font-size: 14px;
+	font-weight: 500;
+	/*								border-radius: 3px;*/
+	border: 2px solid skyblue;
+	/*								box-shadow: 0 .5px 2px rgba(0,0,0,.3);*/
+}
+.footer-detail{
+	float: right;
+	color: dimgray;
+	font-size: 11px;
+}
