@@ -185,10 +185,12 @@
 
                         <thead class="bg-light">
                         <tr>
-                            <th scope="col" class="border-0">STT</th>
-                            <th scope="col" class="border-0">Tên thể loại</th>
-                            <th scope="col" class="border-0">Thể loại cha</th>
-                            <th colspan="2" scope="col" class="border-0">Thao tác</th>
+                            <th scope="col" class="border-0" style="width: 100px">STT</th>
+                            <th scope="col" class="border-0 text-left">Tên lớp</th>
+                            <th scope="col" class="border-0" style="width: 120px">Niên khóa</th>
+                            <th scope="col" class="border-0" style="width: 120px">SL NV</th>
+                            <th scope="col" class="border-0" style="width: 120px">SL bé</th>
+                            <th scope="col" class="border-0" style="width: 120px">Thao tác</th>
                         </tr>
                         </thead>
                         <?php
@@ -210,7 +212,7 @@
                         else
                         {
                             //Nếu p không có, thì sẽ truy vấn CSDL để tìm xem có bao nhiêu page
-                            $query_pg="SELECT COUNT(id) FROM loaitin";
+                            $query_pg="SELECT COUNT(id) FROM lophoc_chitiet";
                             $results_pg=mysqli_query($dbc,$query_pg);
                             list($record)=mysqli_fetch_array($results_pg,MYSQLI_NUM);
                             //Tìm số trang bằng cách chia số dữ liệu cho số limit
@@ -223,7 +225,13 @@
                                 $per_page=1;
                             }
                         }
-                        $query = "SELECT * FROM loaitin ORDER BY the_loai_cha ASC LIMIT {$start},{$limit}";
+                        $query = "SELECT l.id,l.mo_ta, n.ten_nien_khoa, 
+                                    (SELECT COUNT(id) FROM lophoc_be WHERE l.id = lophoc_be.lop_hoc_chi_tiet_id)	AS sl_be,
+                                    (SELECT COUNT(id) FROM lophoc_nhanvien WHERE l.id = lophoc_nhanvien.lop_hoc_chi_tiet_id) AS sl_nhan_vien
+                                FROM
+                                    lophoc_chitiet AS l INNER JOIN nienkhoa AS n ON l.nien_khoa_id = n.id ORDER BY id ASC 
+                                    LIMIT {$start},{$limit}";
+
                         $results = mysqli_query($dbc, $query);
                         foreach ($results as $key => $item)
                         {
@@ -231,30 +239,13 @@
                             <tbody>
                             <tr>
                                 <td><?php echo ($key + 1) ?></td>
-                                <td><?php echo $item['ten'] ?></td>
-                                <td>
-                                    <?php
-                                    if($item['the_loai_cha']==0)
-                                    {
-                                        echo "Không Có";
-                                    }
-                                    else
-                                    {
-                                        $query_id="SELECT id,ten FROM loaitin WHERE id={$item['the_loai_cha']}";
-                                        $result_id=mysqli_query($dbc,$query_id);
-                                        if(mysqli_num_rows($result_id)==1)
-                                        {
-                                            list($id,$name)=mysqli_fetch_array($result_id,MYSQLI_NUM);
-                                            echo $name;
-                                        }
-                                    }
-                                    ?>
-                                </td>
+                                <td class="text-left"><?php echo $item['mo_ta'] ?></td>
+                                <td><?php echo $item['ten_nien_khoa']?></td>
+                                <td><?php echo $item['sl_nhan_vien']?></td>
+                                <td><?php echo $item['sl_be']?></td>
                                 <td>
                                     <a href="admin-loaitin-sua.php?id=<?php echo $item['id']; ?>"><i class="material-icons action-icon">edit</i></a>
-                                </td>
-                                <td>
-                                    <a href="admin-loaitin-xoa.php?id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn có thực sự muốn xóa <?php echo $item['ten']; ?>');"><i class="material-icons action-icon">delete_outline</i></a>
+                                    <a onclick="delete_lop_hoc(<?php echo $item['id']?>)" style="cursor: pointer" title="Xóa lớp học"><i class="material-icons action-icon">delete_outline</i></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -340,17 +331,38 @@
             'id_lop': $('select[name="select_lop_hoc"]').val(),
             'arr_nhan_vien': $('.select-nhannien').val()
         }
-        console.log(data);
+
         $.ajax({
             type: "POST",
             url: 'admin-xuly-lop.php',
             data: data,
             success : function (result){
-                console.log(result)
-                if (result == "1") alert("Success");
-                else alert("Failed");
+                if (result == "1") {
+                    alert("Thêm lớp học thành công!");
+                }
+                else alert("Lỗi không thêm được lớp học");
+                location.reload();
             }
         });
+    }
+
+    function delete_lop_hoc(id) {
+        if(confirm("Bạn có chắc chắn muốn xóa lớp học vừa chọn?")) {
+            data = {
+                'delete': 1,
+                'id_chi_tiet_lop_hoc': id
+            }
+            $.ajax({
+                type: "POST",
+                url: 'admin-xuly-lop.php',
+                data: data,
+                success : function (result){
+                    if (result == "1") alert("Lớp học vừa chọn đã được xóa!");
+                    else alert("Lỗi không xóa được!");
+                    location.reload();
+                }
+            });
+        }
     }
 </script>
 
