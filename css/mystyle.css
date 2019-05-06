@@ -4,3 +4,6 @@
 	margin: 0;
 	border: none;
 }
+
+a.btn-edit i:hover { color: #35c71b !important; }
+a.btn-remove i:hover { color: #ff392a; }

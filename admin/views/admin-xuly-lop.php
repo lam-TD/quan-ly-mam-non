@@ -75,6 +75,7 @@ if (isset($_POST['edit'])) {
     $reslut = mysqli_query($dbc, $query);
     if ($reslut) {
         if (count($arr_nhan_vien) > 0) {
+
             // Xóa những nhân viên cũ trong lớp
             mysqli_query($dbc, "DELETE FROM lophoc_nhanvien WHERE lop_hoc_chi_tiet_id = {$id_chi_tiet_lop}");
             $query_xoa_nhan_vien = mysqli_affected_rows($dbc);

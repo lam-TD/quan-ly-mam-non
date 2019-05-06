@@ -10,6 +10,7 @@
 
 <style>
     span.select2-container { width: 100% !important; }
+    .error-message { color: #ff392a; }
 </style>
 
 <?php
@@ -20,7 +21,8 @@
     $results_nien_khoa = mysqli_query($dbc,"SELECT * FROM nienkhoa");
 
     // Lấy danh sách nhân viên
-    $results_nhan_vien = mysqli_query($dbc,"SELECT id, ho_ten FROM nhanvien");
+    $results_nhan_vien_them_moi = mysqli_query($dbc,"SELECT id, ho_ten FROM nhanvien WHERE id NOT IN (SELECT nhan_vien_id FROM lophoc_nhanvien)");
+    $results_nhan_vien_cap_nhat = mysqli_query($dbc,"SELECT id, ho_ten FROM nhanvien");
 ?>
 
 <!-- Page content-->
@@ -139,37 +141,48 @@
                                 <div class="modal-body">
                                     <input id="id_chi_tiet_lop_hoc" type="hidden" value="">
                                     <div class="form-group">
-                                        <label style="display:block">Tên lớp</label>
-                                        <input name="ten_lop" onkeyup="check_ten_lop(this)" type="text" class="form-control">
-                                        <small style="display: none" class="erro-ten-lop">Tên lớp này đã tồn tại</small>
+                                        <label style="display:block">Tên lớp <span class="dot-required">*</span></label>
+                                        <input name="ten_lop" onkeyup="check_ten_lop(this)" maxlength="255" type="text" class="form-control">
+                                        <small style="display: none" class="error-message">Tên lớp này đã tồn tại</small>
+                                        <small style="display: none" class="error-message e-1">Tên lớp có độ từ 5-255 ký tự</small>
                                     </div>
                                     <div class="form-group">
-                                        <label style="display:block">Loại lớp</label>
+                                        <label style="display:block">Loại lớp <span class="dot-required">*</span></label>
                                         <select name="select_lop_hoc" id="" class="form-control">
-                                            <option value="">Chọn lớp học</option>
+<!--                                            <option value="0">Chọn loại lớp học</option>-->
                                             <?php foreach ($results_lop_hoc as $item):?>
                                                 <option value="<?php echo $item['id']?>"><?php echo $item['ten_lop']?></option>
                                             <?php endforeach;?>
                                         </select>
+                                        <small style="display: none" class="error-message e-2"><i>Vui lòng loại lớp học</i></small>
                                     </div>
                                     <div class="form-group">
-                                        <label style="display:block">Niên khóa</label>
+                                        <label style="display:block">Niên khóa <span class="dot-required">*</span></label>
                                         <select name="select_nien_khoa" id="" class="form-control">
-                                            <option value="">Chọn Niên khóa</option>
+<!--                                            <option value="0">Chọn Niên khóa</option>-->
                                             <?php foreach ($results_nien_khoa as $item):?>
                                                 <option value="<?php echo $item['id']?>"><?php echo $item['ten_nien_khoa']?></option>
                                             <?php endforeach;?>
                                         </select>
+                                        <small style="display: none" class="error-message e-3"><i>Vui lòng niên khóa</i></small>
                                     </div>
                                     <div class="form-group">
-                                        <label style="display:block">Nhân viên</label>
-                                        <select multiple class="form-control select-nhannien w-100" name="nhanvien[]" onChange="">
-                                            <?php foreach ($results_nhan_vien as $item): ?>
+                                        <label style="display:block">Nhân viên <span class="dot-required">*</span></label>
+                                        <select multiple class="form-control select-nhannien-add w-100" name="nhanvien[]" onChange="">
+                                            <?php foreach ($results_nhan_vien_them_moi as $item): ?>
                                                 <option value="<?php echo $item['id'] ?>">
                                                     <?php echo $item['ho_ten'] ?>
                                                 </option>
                                             <?php endforeach;?>
                                         </select>
+                                        <select multiple class="form-control select-nhannien-edit w-100" name="nhanvien[]" onChange="">
+                                            <?php foreach ($results_nhan_vien_cap_nhat as $item): ?>
+                                                <option value="<?php echo $item['id'] ?>">
+                                                    <?php echo $item['ho_ten'] ?>
+                                                </option>
+                                            <?php endforeach;?>
+                                        </select>
+                                        <small style="display: none" class="error-message e-4"><i>Số lượng bắt buộc từ 2-3 nhân viên</i></small>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -245,10 +258,10 @@
                                 <td><?php echo $item['sl_nhan_vien']?></td>
                                 <td><?php echo $item['sl_be']?></td>
                                 <td>
-                                    <a onclick="show_form_edit(<?php echo $item['id']?>)" style="cursor: pointer" title="Cập nhật lớp học">
+                                    <a onclick="show_form_edit(<?php echo $item['id']?>)" class="btn-edit" style="cursor: pointer" title="Cập nhật lớp học">
                                         <i class="material-icons action-icon">edit</i>
                                     </a>
-                                    <a onclick="delete_lop_hoc(<?php echo $item['id']?>)" style="cursor: pointer" title="Xóa lớp học"><i class="material-icons action-icon">delete_outline</i></a>
+                                    <a onclick="delete_lop_hoc(<?php echo $item['id']?>)" class="btn-remove" style="cursor: pointer" title="Xóa lớp học"><i class="material-icons action-icon">delete_outline</i></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -299,7 +312,15 @@
 <!-- End page content-->
 
 <script>
-    $( '.select-nhannien' ).select2( {
+    $( '.select-nhannien-add' ).select2( {
+        placeholder: {
+            id: '',
+            text: 'Vui lòng chọn nhân viên'
+        },
+        maximumSelectionLength: 3
+    } );
+
+    $( '.select-nhannien-edit' ).select2( {
         placeholder: {
             id: '',
             text: 'Vui lòng chọn nhân viên'
@@ -315,14 +336,13 @@
            $('input[name="ten_lop"]').val("");
            $('select[name="select_nien_khoa"]').val("");
            $('select[name="select_lop_hoc"]').val("");
-           $('.select-nhannien').val("").trigger('change');
+
+           $('.select-nhannien-add').next(".select2-container").show();
+           $('.select-nhannien-edit').next(".select2-container").hide();
+
+           $('.select-nhannien-add').val("").trigger('change');
        })
     });
-
-    function check_nhan_vien_da_lam_o_lop_khac() {
-        $.get( "admin-xuly-lop.php?ten_lop=" + "aaa" + "&check_lop=1", function( data ) {
-        });
-    }
     
     function check_ten_lop(item) {
         $.get( "admin-xuly-lop.php?ten_lop=" + $(item).val() + "&check_lop=1", function( data ) {
@@ -338,26 +358,32 @@
     }
     
     function insert_lop_hoc() {
-        data = {
-            'add': 1,
-            'ten_lop': $('input[name="ten_lop"]').val(),
-            'id_nien_khoa': $('select[name="select_nien_khoa"]').val(),
-            'id_lop': $('select[name="select_lop_hoc"]').val(),
-            'arr_nhan_vien': $('.select-nhannien').val()
+        // kiểm tra dữ liệu
+        if(validate_form() == -1) {
+            return;
         }
-
-        $.ajax({
-            type: "POST",
-            url: 'admin-xuly-lop.php',
-            data: data,
-            success : function (result){
-                if (result == "1") {
-                    alert("Thêm lớp học thành công!");
-                }
-                else alert("Lỗi không thêm được lớp học");
-                location.reload();
+        else{
+            data = {
+                'add': 1,
+                'ten_lop': $('input[name="ten_lop"]').val(),
+                'id_nien_khoa': $('select[name="select_nien_khoa"]').val(),
+                'id_lop': $('select[name="select_lop_hoc"]').val(),
+                'arr_nhan_vien': $('.select-nhannien-add').val()
             }
-        });
+
+            $.ajax({
+                type: "POST",
+                url: 'admin-xuly-lop.php',
+                data: data,
+                success : function (result){
+                    if (result == "1") {
+                        alert("Thêm lớp học thành công!");
+                    }
+                    else alert("Lỗi không thêm được lớp học");
+                    location.reload();
+                }
+            });
+        }
     }
 
     function delete_lop_hoc(id) {
@@ -381,6 +407,8 @@
 
     function show_form_edit(id) {
         $('#flag_insert_update').val(2); //bật cờ báo là đang ở form cập nhật lớp học
+        $('.select-nhannien-add').next(".select2-container").hide();
+        $('.select-nhannien-edit').next(".select2-container").show();
         // load thông tin của một lớp học
         data = {
             'load_info_item': 1,
@@ -396,20 +424,25 @@
                 $('input[name="ten_lop"]').val(item.mo_ta);
                 $('select[name="select_nien_khoa"]').val(item.nien_khoa_id);
                 $('select[name="select_lop_hoc"]').val(item.lop_hoc_id);
-                $('.select-nhannien').val(item.nv).trigger('change');
+                $('.select-nhannien-edit').val(item.nv).trigger('change');
             }
         });
         $('#myModal').modal().show();
     }
 
     function edit_lop_hoc(id) {
+        // kiểm tra dữ liệu
+        if(!validate_form()) {
+            return -1;
+        }
+
         data = {
             edit: 1,
             ten_lop: $('input[name="ten_lop"]').val(),
             id_nien_khoa: $('select[name="select_nien_khoa"]').val(),
             id_lop: $('select[name="select_lop_hoc"]').val(),
             id_chi_tiet_lop: $('#id_chi_tiet_lop_hoc').val(),
-            arr_nhan_vien: $('.select-nhannien').val()
+            arr_nhan_vien: $('.select-nhannien-edit').val()
         };
 
         $.ajax({
@@ -435,6 +468,30 @@
             id_chi_tiet_lop_hoc = $('#id_chi_tiet_lop').val();
             edit_lop_hoc(id_chi_tiet_lop_hoc);
         }
+    }
+
+    function validate_form() {
+        ten_lop = new String($('input[name="ten_lop"]').val());
+        id_nien_khoa = parseInt($('select[name="select_nien_khoa"]').val());
+        id_lop = parseInt($('select[name="select_lop_hoc"]').val());
+
+        type = $('#flag_insert_update').val();
+        if(type == 1) arr_nhan_vien = $('.select-nhannien-add').val();
+        else arr_nhan_vien = $('.select-nhannien-edit').val();
+
+        if(ten_lop.length < 5 || ten_lop.length > 255) { $('.e-1').show(); return -1; }
+        else $('.e-1').hide();
+
+        if(!id_lop) { $('.e-2').show(); return -1; }
+        else $('.e-2').hide();
+
+        if(!id_nien_khoa) { $('.e-3').show(); return -1; }
+        else $('.e-3').hide();
+
+        if(arr_nhan_vien.length < 2) { $('.e-4').show(); return -1; }
+        else $('.e-4').hide();
+
+        return 1;
     }
 </script>
 
