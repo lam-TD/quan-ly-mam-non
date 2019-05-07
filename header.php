@@ -126,7 +126,7 @@
 												
                                         }
                                         ?>
-										<li><a href="#">Tra Cứu</a></li>
+										<li><a href="tra-cuu.php">Tra Cứu</a></li>
 										<li><a href="lien-he.php">Liên Hệ</a></li>
                                     </ul>
                                 </nav>
