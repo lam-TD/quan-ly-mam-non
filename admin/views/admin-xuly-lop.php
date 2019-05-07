@@ -36,11 +36,19 @@ if (isset($_POST['add'])) {
 }
 
 // Xóa lớp học
-if(isset($_POST['delete']) && isset($_POST['id_chi_tiet_lop_hoc'])) {
+if (isset($_POST['delete']) && isset($_POST['id_chi_tiet_lop_hoc'])) {
     $id = (int)$_POST['id_chi_tiet_lop_hoc'];
-    $query = "DELETE FROM lophoc_chitiet WHERE id = {$id}";
-    if(mysqli_query($dbc, $query))  echo 1;
-    else echo -1;
+
+    // Kiểm tra lớp học có bé hay không nếu có thì ko cho xóa
+    $sum_be = mysqli_fetch_row(mysqli_query($dbc, "SELECT COUNT(id) as sum_be FROM lophoc_be WHERE lop_hoc_chi_tiet_id = {$id}"));
+    if ($sum_be[0] > 0) {
+        echo -2;
+    } else {
+        $query = "DELETE FROM lophoc_chitiet WHERE id = {$id}";
+        if (mysqli_query($dbc, $query)) echo 1;
+        else echo -1;
+    }
+
 }
 
 // Load chi tiết một lớp học

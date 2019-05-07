@@ -356,13 +356,12 @@
             }
         });
     }
-    
+
     function insert_lop_hoc() {
         // kiểm tra dữ liệu
-        if(validate_form() == -1) {
+        if (validate_form() == -1) {
             return;
-        }
-        else{
+        } else {
             data = {
                 'add': 1,
                 'ten_lop': $('input[name="ten_lop"]').val(),
@@ -375,11 +374,10 @@
                 type: "POST",
                 url: 'admin-xuly-lop.php',
                 data: data,
-                success : function (result){
+                success: function (result) {
                     if (result == "1") {
                         alert("Thêm lớp học thành công!");
-                    }
-                    else alert("Lỗi không thêm được lớp học");
+                    } else alert("Lỗi không thêm được lớp học");
                     location.reload();
                 }
             });
@@ -397,7 +395,9 @@
                 url: 'admin-xuly-lop.php',
                 data: data,
                 success : function (result){
+                    console.log(result);
                     if (result == "1") alert("Lớp học vừa chọn đã được xóa!");
+                    else if(result == "-2") alert("Lớp học này đang có bé! vui lòng xóa thông tin bé trong lớp học này!");
                     else alert("Lỗi không xóa được!");
                     location.reload();
                 }
@@ -432,35 +432,36 @@
 
     function edit_lop_hoc(id) {
         // kiểm tra dữ liệu
-        if(!validate_form()) {
-            return -1;
-        }
+        console.log(validate_form());
+        if (validate_form() == -1) {
+            return;
+        } else {
+            data = {
+                edit: 1,
+                ten_lop: $('input[name="ten_lop"]').val(),
+                id_nien_khoa: $('select[name="select_nien_khoa"]').val(),
+                id_lop: $('select[name="select_lop_hoc"]').val(),
+                id_chi_tiet_lop: $('#id_chi_tiet_lop_hoc').val(),
+                arr_nhan_vien: $('.select-nhannien-edit').val()
+            };
 
-        data = {
-            edit: 1,
-            ten_lop: $('input[name="ten_lop"]').val(),
-            id_nien_khoa: $('select[name="select_nien_khoa"]').val(),
-            id_lop: $('select[name="select_lop_hoc"]').val(),
-            id_chi_tiet_lop: $('#id_chi_tiet_lop_hoc').val(),
-            arr_nhan_vien: $('.select-nhannien-edit').val()
-        };
-
-        $.ajax({
-            type: "POST",
-            url: 'admin-xuly-lop.php',
-            data: data,
-            success : function (result){
-                if (result == "1") {
-                    alert("Cập nhật thông tin lớp học thành công!");
+            $.ajax({
+                type: "POST",
+                url: 'admin-xuly-lop.php',
+                data: data,
+                success: function (result) {
+                    if (result == "1") {
+                        alert("Cập nhật thông tin lớp học thành công!");
+                    } else alert("Lỗi không cập nhật được lớp học");
+                    location.reload();
                 }
-                else alert("Lỗi không cập nhật được lớp học");
-                location.reload();
-            }
-        });
+            });
+        }
     }
 
     function submit_lop_hoc() {
         type = $('#flag_insert_update').val();
+
         if(type == 1) {
             insert_lop_hoc();
         }
