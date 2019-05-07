@@ -177,26 +177,35 @@
                                 <th scope="col" class="border-0" style="width: 10%;"></th>
                             </tr>
                             <?php
-                            if (!isset($_GET['searchKey']) && empty($_GET['searchKey'])) $query = "SELECT * FROM be ORDER BY id DESC";
-                            else $query = "SELECT * FROM be WHERE ten LIKE '%{$_GET['searchKey']}%' ORDER BY REVERSE(SPLIT_STRING(REVERSE(TRIM(ten)),' ', 1))";
-                            $results = mysqli_query( $dbc, $query );
-                            if ( mysqli_num_rows($results) > 0)
-                                foreach ( $results as $key => $item ) {
-                                    ?>
-                                <tr>
-                                    <td><?php echo $item['ten']." - ".getAge($item['ngaysinh'])." tuổi";?></td>
-                                    <td><img src="../images/hinhbe/<?php echo $item['hinhbe']?>" style="width: 100px; height: 120px;"></td>
-                                    <td><?php if($item['gioitinh'] == 1) echo 'Nam'; else echo 'Nữ';?></td>
-                                    <td><?php echo 'Lá'?></td>
-                                    <td><a href="admin-be-sua.php?id=<?php echo $item['id']?>" class="btn-custom2" style="font-size: 12px;">Xem</a></td>
-                                </tr>
-                            <?php
+                                if (!isset($_GET['searchKey']) && empty($_GET['searchKey'])) {
+                                    $query = "SELECT be.id, be.hinhbe, be.ten, be.ngaysinh, be.gioitinh, lophoc_chitiet.mo_ta FROM be 
+                                              INNER JOIN lophoc_be ON be.id = lophoc_be.be_id 
+                                              INNER JOIN lophoc_chitiet ON lophoc_be.lop_hoc_chi_tiet_id = lophoc_chitiet.id 
+                                              ORDER BY id DESC ";
                                 }
-                            else{
-                                ?>
-                                <tr><td colspan="5" align="center">Không tìm thấy</td></tr>
-                            <?php
-                            }
+                                else {
+                                    $query = "SELECT be.id, be.hinhbe, be.ten, be.ngaysinh, be.gioitinh, lophoc_chitiet.mo_ta FROM be 
+                                              INNER JOIN lophoc_be ON be.id = lophoc_be.be_id 
+                                              INNER JOIN lophoc_chitiet ON lophoc_be.lop_hoc_chi_tiet_id = lophoc_chitiet.id WHERE ten LIKE '%{$_GET['searchKey']}%' ORDER BY REVERSE(SPLIT_STRING(REVERSE(TRIM(ten)),' ', 1))";
+                                }
+                                $results = mysqli_query( $dbc, $query );
+                                if ( mysqli_num_rows($results) > 0)
+                                    foreach ( $results as $key => $item ) {
+                                        ?>
+                                    <tr>
+                                        <td><?php echo $item['ten']." - ".getAge($item['ngaysinh'])." tuổi";?></td>
+                                        <td><img src="../images/hinhbe/<?php echo $item['hinhbe']?>" style="width: 100px; height: 120px;"></td>
+                                        <td><?php if($item['gioitinh'] == 1) echo 'Nam'; else echo 'Nữ';?></td>
+                                        <td><?php echo $item['mo_ta']?></td>
+                                        <td><a href="admin-be-sua.php?id=<?php echo $item['id']?>" class="btn-custom2" style="font-size: 12px;">Xem</a></td>
+                                    </tr>
+                                <?php
+                                    }
+                                else{
+                                    ?>
+                                    <tr><td colspan="5" align="center">Không tìm thấy</td></tr>
+                                <?php
+                                }
                             ?>
                         </table>
                     </div>

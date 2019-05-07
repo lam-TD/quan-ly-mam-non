@@ -34,274 +34,277 @@
 	<div class="row">
 		<div class="col">
 			<div class="card card-small mb-4" style="padding: 40px 60px">
-				<div class="card-header">
-					<h5 class="text-info">THÔNG MỚI THÔNG TIN CỦA BÉ</h5>
-					<?php
-					if (isset($_POST['btn-submit-be'])) {
-						$errors = array();
-						$have_dad = false;
-						$have_mom = false;
-						if ( empty( $_POST[ 'txtTenBe' ] ) ) {
-							$errors[] = 'txtTenBe';
-						} else {
-							$name = $_POST[ 'txtTenBe' ];
-						}
-						if ( isset($_POST[ 'txtNgaySinh' ]) && empty( $_POST[ 'txtNgaySinh' ] ) ) {
-							$errors[] = 'txtNgaySinh';
-						} else {
-							$ngaysinh = $_POST[ 'txtNgaySinh' ];
-						}
-						if ( empty( $_POST[ 'txtDiaChi' ] ) ) {
-							$errors[] = 'txtDiaChi';
-						} else {
-							$diachi = $_POST[ 'txtDiaChi' ];
-						}
-						
-						if(empty($_POST['temp-image-input'])){
-							if($_FILES['hinhBe']['size'] == 0) {
-								$errors[] = 'hinhBe';
-								$mesErrorHinhBe = "Bạn chưa chọn ảnh bé";
-							} else if ( ( $_FILES[ 'hinhBe' ][ 'type' ] != "image/gif" ) &&
-										( $_FILES[ 'hinhBe' ][ 'type' ] != "image/png" ) &&
-										( $_FILES[ 'hinhBe' ][ 'type' ] != "image/jpeg" ) &&
-										( $_FILES[ 'hinhBe' ][ 'type' ] != "image/jpg" ) ) {
-								if(!in_array('hinhBe',$errors))
-									$errors[] = 'hinhBe';
-								$mesErrorHinhBe = "File không đúng định dạnh";
-							} else if ( $_FILES[ 'hinhBe' ][ 'size' ] > 1000000 ) {
-								if(!in_array('hinhBe',$errors))
-									$errors[] = 'hinhBe';
-								$mesErrorHinhBe = "Kich thước phải nhỏ hơn 1MB";
-							} else {	
-								$temp_file = "../images/temp-image/".$_FILES[ 'hinhBe' ]['name'];
-								copy($_FILES[ 'hinhBe' ]['tmp_name'],$temp_file);
-							}
-						}
-						else{
-							$temp_file = $_POST['temp-image-input'];
-						}
-						if(is_numeric($_POST[ 'txtChieuCao' ])){
-							if($_POST[ 'txtChieuCao' ]<=0)
-								$errors[] = 'txtChieuCao';
-							else{
-								$chieucao = $_POST[ 'txtChieuCao' ];
-							}
-						}
-						else{
-							$errors[] = 'txtChieuCao';
-						}
-						if(is_numeric($_POST[ 'txtCanNang' ])){
-							if($_POST[ 'txtCanNang' ]<=0)
-								$errors[] = 'txtCanNang';
-							else{
-								$cannang = $_POST[ 'txtCanNang' ];
-							}
-						}
-						else{
-							$errors[] = 'txtCanNang';
-						}
-						
-						if ( !empty( $_POST[ 'txtTenCha' ]) || !empty( $_POST[ 'txtSDTCha' ] )){
-							if ( empty( $_POST[ 'txtTenCha' ] ) ) {
-								$errors[] = 'txtTenCha';
-							} else {
-								$tencha = $_POST[ 'txtTenCha' ];
-							}	
-							if ( is_numeric( $_POST[ 'txtSDTCha' ] ) ) {
-								if ( strlen( $_POST[ 'txtSDTCha' ] ) != 10 )
-									$errors[] = 'txtSDTCha2';
-								else
-									$sdtCha = $_POST[ 'txtSDTCha' ];
-							} else {
-								$errors[] = 'txtSDTCha';
-							}
-							if(isset($tencha) && isset($sdtCha)){
-								$have_dad = true;
-							}
-						}	
-						
-						if ( !empty( $_POST[ 'txtTenMe' ]) || !empty( $_POST[ 'txtSDTMe' ] )){
-							if ( empty( $_POST[ 'txtTenMe' ] ) ) {
-								$errors[] = 'txtTenMe';
-							} else {
-								$tenme = $_POST[ 'txtTenMe' ];
-							}
-							if ( is_numeric( $_POST[ 'txtSDTMe' ] ) ) {
-								if ( strlen( $_POST[ 'txtSDTMe' ] ) != 10 )
-									$errors[] = 'txtSDTMe2';
-								else
-									$sdtMe = $_POST[ 'txtSDTMe' ];
-							} else {
-								$errors[] = 'txtSDTMe';
-							}
-							if(isset($tenme) && isset($sdtMe)){
-								$have_mom = true;
-							}
-						}	
-						if(!$have_dad && !$have_mom){
-							$errors[] = 'parents';
-						}
+                <div class="row card-header" style="padding-left: 0">
+                    <h5 class="text-info">THÊM MỚI THÔNG TIN CỦA BÉ</h5>
+                </div>
+
+                <div class="card-body">
+                    <?php
+                    if (isset($_POST['btn-submit-be'])) {
+                        $errors = array();
+                        $have_dad = false;
+                        $have_mom = false;
+                        if ( empty( $_POST[ 'txtTenBe' ] ) ) {
+                            $errors[] = 'txtTenBe';
+                        } else {
+                            $name = $_POST[ 'txtTenBe' ];
+                        }
+                        if ( isset($_POST[ 'txtNgaySinh' ]) && empty( $_POST[ 'txtNgaySinh' ] ) ) {
+                            $errors[] = 'txtNgaySinh';
+                        } else {
+                            $ngaysinh = $_POST[ 'txtNgaySinh' ];
+                        }
+                        if ( empty( $_POST[ 'txtDiaChi' ] ) ) {
+                            $errors[] = 'txtDiaChi';
+                        } else {
+                            $diachi = $_POST[ 'txtDiaChi' ];
+                        }
+
+                        if(empty($_POST['temp-image-input'])){
+                            if($_FILES['hinhBe']['size'] == 0) {
+                                $errors[] = 'hinhBe';
+                                $mesErrorHinhBe = "Bạn chưa chọn ảnh bé";
+                            } else if ( ( $_FILES[ 'hinhBe' ][ 'type' ] != "image/gif" ) &&
+                                ( $_FILES[ 'hinhBe' ][ 'type' ] != "image/png" ) &&
+                                ( $_FILES[ 'hinhBe' ][ 'type' ] != "image/jpeg" ) &&
+                                ( $_FILES[ 'hinhBe' ][ 'type' ] != "image/jpg" ) ) {
+                                if(!in_array('hinhBe',$errors))
+                                    $errors[] = 'hinhBe';
+                                $mesErrorHinhBe = "File không đúng định dạnh";
+                            } else if ( $_FILES[ 'hinhBe' ][ 'size' ] > 1000000 ) {
+                                if(!in_array('hinhBe',$errors))
+                                    $errors[] = 'hinhBe';
+                                $mesErrorHinhBe = "Kich thước phải nhỏ hơn 1MB";
+                            } else {
+                                $temp_file = "../images/temp-image/".$_FILES[ 'hinhBe' ]['name'];
+                                copy($_FILES[ 'hinhBe' ]['tmp_name'],$temp_file);
+                            }
+                        }
+                        else{
+                            $temp_file = $_POST['temp-image-input'];
+                        }
+                        if(is_numeric($_POST[ 'txtChieuCao' ])){
+                            if($_POST[ 'txtChieuCao' ]<=0)
+                                $errors[] = 'txtChieuCao';
+                            else{
+                                $chieucao = $_POST[ 'txtChieuCao' ];
+                            }
+                        }
+                        else{
+                            $errors[] = 'txtChieuCao';
+                        }
+                        if(is_numeric($_POST[ 'txtCanNang' ])){
+                            if($_POST[ 'txtCanNang' ]<=0)
+                                $errors[] = 'txtCanNang';
+                            else{
+                                $cannang = $_POST[ 'txtCanNang' ];
+                            }
+                        }
+                        else{
+                            $errors[] = 'txtCanNang';
+                        }
+
+                        if ( !empty( $_POST[ 'txtTenCha' ]) || !empty( $_POST[ 'txtSDTCha' ] )){
+                            if ( empty( $_POST[ 'txtTenCha' ] ) ) {
+                                $errors[] = 'txtTenCha';
+                            } else {
+                                $tencha = $_POST[ 'txtTenCha' ];
+                            }
+                            if ( is_numeric( $_POST[ 'txtSDTCha' ] ) ) {
+                                if ( strlen( $_POST[ 'txtSDTCha' ] ) != 10 )
+                                    $errors[] = 'txtSDTCha2';
+                                else
+                                    $sdtCha = $_POST[ 'txtSDTCha' ];
+                            } else {
+                                $errors[] = 'txtSDTCha';
+                            }
+                            if(isset($tencha) && isset($sdtCha)){
+                                $have_dad = true;
+                            }
+                        }
+
+                        if ( !empty( $_POST[ 'txtTenMe' ]) || !empty( $_POST[ 'txtSDTMe' ] )){
+                            if ( empty( $_POST[ 'txtTenMe' ] ) ) {
+                                $errors[] = 'txtTenMe';
+                            } else {
+                                $tenme = $_POST[ 'txtTenMe' ];
+                            }
+                            if ( is_numeric( $_POST[ 'txtSDTMe' ] ) ) {
+                                if ( strlen( $_POST[ 'txtSDTMe' ] ) != 10 )
+                                    $errors[] = 'txtSDTMe2';
+                                else
+                                    $sdtMe = $_POST[ 'txtSDTMe' ];
+                            } else {
+                                $errors[] = 'txtSDTMe';
+                            }
+                            if(isset($tenme) && isset($sdtMe)){
+                                $have_mom = true;
+                            }
+                        }
+                        if(!$have_dad && !$have_mom){
+                            $errors[] = 'parents';
+                        }
 
                         if (!$_POST['nien_khoa']) {
                             $errors[] = 'nien_khoa';
                         }
 
-                        if (!$_POST['lop_hoc']) {
+                        if (!isset($_POST['lop_hoc']) || !$_POST['lop_hoc']) {
                             $errors[] = 'lop_hoc';
                         }
 
-						if ( empty( $errors )) {
-							if(!$have_dad){
-								$tencha = '';
-								$sdtCha = '';
-							}
-							if(!$have_mom){
-								$tenme = '';
-								$sdtMe = '';
-							}
-							$tinhtrangsuckhoe = $_POST['txtSucKhoe'];
-							$benh = $_POST['txtBenhBS'];
-							$gioitinh = $_POST[ 'slGioiTinh' ];
-							$trangthai = 1;
-							$fileName = randomDigitsLame(4).'_'.randomDigitsLame(14).substr($temp_file,strrpos($temp_file, '.', -0));
-							copy($temp_file,"../images/hinhbe/".$fileName);
-							$query_tt = "INSERT INTO be(ten, ngaysinh, gioitinh, chieucao, cannang, diachi, tinhtrangsuckhoe, benhbamsinh ,hinhbe , tencha, sdtcha, tenme, sdtme, trangthai) VALUES('{$name}','{$ngaysinh}',{$gioitinh},'{$chieucao}','{$cannang}','{$diachi}','{$tinhtrangsuckhoe}','{$benh}','{$fileName}','{$tencha}','{$sdtCha}','{$tenme}','{$sdtMe}',$trangthai) ";
-							$results_tt = mysqli_query( $dbc, $query_tt );
-							if ( mysqli_affected_rows( $dbc ) == 1 ) {
-							    // lấy id bé mới được thêm vào
+                        if ( empty( $errors )) {
+                            if(!$have_dad){
+                                $tencha = '';
+                                $sdtCha = '';
+                            }
+                            if(!$have_mom){
+                                $tenme = '';
+                                $sdtMe = '';
+                            }
+                            $tinhtrangsuckhoe = $_POST['txtSucKhoe'];
+                            $benh = $_POST['txtBenhBS'];
+                            $gioitinh = $_POST[ 'slGioiTinh' ];
+                            $trangthai = 1;
+                            $fileName = randomDigitsLame(4).'_'.randomDigitsLame(14).substr($temp_file,strrpos($temp_file, '.', -0));
+                            copy($temp_file,"../images/hinhbe/".$fileName);
+                            $query_tt = "INSERT INTO be(ten, ngaysinh, gioitinh, chieucao, cannang, diachi, tinhtrangsuckhoe, benhbamsinh ,hinhbe , tencha, sdtcha, tenme, sdtme, trangthai) VALUES('{$name}','{$ngaysinh}',{$gioitinh},'{$chieucao}','{$cannang}','{$diachi}','{$tinhtrangsuckhoe}','{$benh}','{$fileName}','{$tencha}','{$sdtCha}','{$tenme}','{$sdtMe}',$trangthai) ";
+                            $results_tt = mysqli_query( $dbc, $query_tt );
+                            if ( mysqli_affected_rows( $dbc ) == 1 ) {
+                                // lấy id bé mới được thêm vào
                                 $data_be = mysqli_fetch_row(mysqli_query($dbc, "SELECT id FROM be ORDER BY id DESC LIMIT 1"));
                                 $lop_hoc_chi_tiet_id = $_POST['lop_hoc'];
                                 if($data_be > 0 && $lop_hoc_chi_tiet_id){
                                     $insert_vao_lop_hoc = mysqli_query($dbc, "INSERT INTO lophoc_be (be_id, lop_hoc_chi_tiet_id) VALUES ({$data_be[0]}, {$lop_hoc_chi_tiet_id})");
                                 }
-							    ?>
-                                    <script>
-                                        alert( "Thêm thành công" );
-                                        window.location = "admin-be.php?btnSeach=&searchKey="+"<?php echo $name?>";
-                                    </script>
+                                ?>
+                                <script>
+                                    alert( "Thêm thành công" );
+                                    window.location = "admin-be.php?btnSeach=&searchKey="+"<?php echo $name?>";
+                                </script>
                                 <?php
                             } else {
                                 echo "<script>";
                                 echo 'alert("Thêm không thành công")';
                                 echo "</script>";
                             }
-					} else {
-						$message = "<p class='text-danger'>Bạn hãy nhập đầy đủ thông tin</p>";
-					}
-					}
-					if ( isset( $message ) ) {
-						echo $message;
-					}
-					?>
-					<form action="" method="post" enctype="multipart/form-data" style="margin-top: 30px">
-						<script>
-							function showPreview( objFileInput ) {
-								var filename = objFileInput.value.split('.').pop().toLowerCase();
-								var fileTypes = ['jpg', 'jpeg', 'png', 'gif'];
-								isValid = fileTypes.indexOf(filename) > -1;
-								if (isValid) {
-								//if ( objFileInput.files[ 0 ] ) {
-									var fileReader = new FileReader();
-									fileReader.onload = function ( e ) {
-										$( "#targetLayer" ).addClass( 'have-photo' );
-										$( "#targetLayer" ).css( 'background-image', 'url("' + e.target.result + '")' );
-										sessionStorage.setItem('have-photo',e.target.result);
-										$( '#targetLayer .glyphicon' ).fadeOut();
-										$('input[name="temp-image-input"]').val('');
-									}
-									fileReader.readAsDataURL( objFileInput.files[ 0 ] );
-								}
-							};
-							function loadPhoto(url){
-								$( "#targetLayer" ).addClass( 'have-photo' );
-								$( "#targetLayer" ).css( 'background-image', 'url("' + url + '")' );
-								$( '#targetLayer .glyphicon' ).fadeOut();
-							}
-						</script>
-						<style>
-							#targetLayer {
-								width: 250px;
-								height: 320px;
-								margin: 20px auto 0 auto;
-								border: 5px solid skyblue;
-								border-radius: 9px;
-								background-repeat: no-repeat;
-								background-position: center;
-								background-size: cover;
-								background-color: #f4f5f757;
-								position: relative;
-							}
-							
-							#targetLayer .glyphicon {
-								position: absolute;
-								top: 108px;
-								left: 75px;
-								font-size: 65pt;
-								text-align: center;
-								color: white;
-								cursor: pointer;
-								text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-								transform-origin-x: center;
-								-webkit-transform-origin-x: center;
-							}
-							
-							#targetLayer .glyphicon:hover {
-								transform: scale(1.02);
-								text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
-							}
-							
-							#targetLayer button:active .glyphicon {
-								transform: scale(.98);
-							}
-							
-							#targetLayer .input {
-								position: absolute;
-								top: 100px;
-								left: 66px;
-								width: 60px;
-								height: 60px;
-								overflow: hidden;
-								opacity: 0;
-							}
-							
-							#targetLayer input {
-								display: none;
-							}
-							
-							.dot-required {
-								color: red;
-							}
-							
-							.parent-zone {
-								margin: 35px -30px 15px -30px;
-								padding: 30px 15px 10px 15px;
-								border-radius: 5px;
-								box-shadow: 0 .5px 4px rgba(0,0,0,0.2);
-								position: relative;								
-								background-color: #f4f5f757;
-							}
-							.parent-zone .title-absolute span{
-								position: absolute;
-								top: -16px;
-								left: 15px;
-								background: white;
-								color: skyblue;
-								text-transform: uppercase;
-								padding: 4px 10px;
-								font-size: 14px;
-								font-weight: 500;
-/*								border-radius: 3px;*/
-								border: 2px solid skyblue;
-/*								box-shadow: 0 .5px 2px rgba(0,0,0,.3);*/
-							}
-							.footer-detail{
-								float: right;
-								color: dimgray;
-								font-size: 11px;
-							}
-						</style>
+                        } else {
+                            $message = "<p class='text-danger'>Bạn hãy nhập đầy đủ thông tin</p>";
+                        }
+                    }
+                    if ( isset( $message ) ) {
+                        echo $message;
+                    }
+                    ?>
+                    <form id="form-them-be" action="" method="post" enctype="multipart/form-data" style="margin-top: 0px">
+                        <script>
+                            function showPreview( objFileInput ) {
+                                var filename = objFileInput.value.split('.').pop().toLowerCase();
+                                var fileTypes = ['jpg', 'jpeg', 'png', 'gif'];
+                                isValid = fileTypes.indexOf(filename) > -1;
+                                if (isValid) {
+                                    //if ( objFileInput.files[ 0 ] ) {
+                                    var fileReader = new FileReader();
+                                    fileReader.onload = function ( e ) {
+                                        $( "#targetLayer" ).addClass( 'have-photo' );
+                                        $( "#targetLayer" ).css( 'background-image', 'url("' + e.target.result + '")' );
+                                        sessionStorage.setItem('have-photo',e.target.result);
+                                        $( '#targetLayer .glyphicon' ).fadeOut();
+                                        $('input[name="temp-image-input"]').val('');
+                                    }
+                                    fileReader.readAsDataURL( objFileInput.files[ 0 ] );
+                                }
+                            };
+                            function loadPhoto(url){
+                                $( "#targetLayer" ).addClass( 'have-photo' );
+                                $( "#targetLayer" ).css( 'background-image', 'url("' + url + '")' );
+                                $( '#targetLayer .glyphicon' ).fadeOut();
+                            }
+                        </script>
+                        <style>
+                            #targetLayer {
+                                width: 250px;
+                                height: 320px;
+                                margin: 20px auto 0 auto;
+                                border: 5px solid skyblue;
+                                border-radius: 9px;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: cover;
+                                background-color: #f4f5f757;
+                                position: relative;
+                            }
 
-                        <div class="row parent-zone">
+                            #targetLayer .glyphicon {
+                                position: absolute;
+                                top: 108px;
+                                left: 75px;
+                                font-size: 65pt;
+                                text-align: center;
+                                color: white;
+                                cursor: pointer;
+                                text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+                                transform-origin-x: center;
+                                -webkit-transform-origin-x: center;
+                            }
+
+                            #targetLayer .glyphicon:hover {
+                                transform: scale(1.02);
+                                text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+                            }
+
+                            #targetLayer button:active .glyphicon {
+                                transform: scale(.98);
+                            }
+
+                            #targetLayer .input {
+                                position: absolute;
+                                top: 100px;
+                                left: 66px;
+                                width: 60px;
+                                height: 60px;
+                                overflow: hidden;
+                                opacity: 0;
+                            }
+
+                            #targetLayer input {
+                                display: none;
+                            }
+
+                            .dot-required {
+                                color: red;
+                            }
+
+                            .parent-zone {
+                                margin: 35px -30px 15px -30px;
+                                padding: 30px 15px 10px 15px;
+                                border-radius: 5px;
+                                box-shadow: 0 .5px 4px rgba(0,0,0,0.2);
+                                position: relative;
+                                background-color: #f4f5f757;
+                            }
+                            .parent-zone .title-absolute span{
+                                position: absolute;
+                                top: -16px;
+                                left: 15px;
+                                background: white;
+                                color: skyblue;
+                                text-transform: uppercase;
+                                padding: 4px 10px;
+                                font-size: 14px;
+                                font-weight: 500;
+                                /*								border-radius: 3px;*/
+                                border: 2px solid skyblue;
+                                /*								box-shadow: 0 .5px 2px rgba(0,0,0,.3);*/
+                            }
+                            .footer-detail{
+                                float: right;
+                                color: dimgray;
+                                font-size: 11px;
+                            }
+                        </style>
+
+                        <div class="row parent-zone" style="margin-top: 0">
                             <div class="title-absolute"><span>Thông tin bé</span></div>
                             <div class="row w-100">
                                 <div class="col-8">
@@ -319,10 +322,10 @@
                                         <label>Ngày sinh <span class="dot-required">*</span></label>
                                         <input type="date" class="form-control" name="txtNgaySinh" placeholder="Vui lòng nhập ngày sinh" value="<?php if(isset($_POST['txtNgaySinh'])) {echo $_POST['txtNgaySinh'];} ?>">
                                         <?php
-                                        if(isset($errors) && in_array('txtNgaySinh',$errors))
-                                        {
-                                            echo "<p class='text-danger'>Bạn chưa nhập ngày sinh bé</p>";
-                                        }
+                                            if(isset($errors) && in_array('txtNgaySinh',$errors))
+                                            {
+                                                echo "<p class='text-danger'>Bạn chưa nhập ngày sinh bé</p>";
+                                            }
                                         ?>
                                     </div>
                                     <div class="form-group">
@@ -389,67 +392,67 @@
                             </div>
                         </div>
 
-						<div class="row parent-zone">
-							<div class="title-absolute"><span>Thông tin phụ huynh</span></div>
-							<div class="col">
-								<div class="form-group">
-									<label>Tên cha</label>
-									<input class="form-control" name="txtTenCha" placeholder="Vui lòng nhập tên cha" value="<?php if(isset($_POST['txtTenCha'])) {echo $_POST['txtTenCha'];} ?>">
-									<?php 
-                                if(isset($errors) && in_array('txtTenCha',$errors))
-                                {
-                                    echo "<p class='text-danger'>Bạn chưa nhập tên cha</p>";
-                                }
-                            ?>
-								</div>
-								<div class="form-group">
-									<label>Số điện thoại cha</label>
-									<input class="form-control" name="txtSDTCha" placeholder="Vui lòng nhập số điện thoại cha" value="<?php if(isset($_POST['txtSDTCha'])) {echo $_POST['txtSDTCha'];} ?>">
-									<?php 
-                                if(isset($errors) && in_array('txtSDTCha',$errors))
-                                {
-                                    echo "<p class='text-danger'>Vui lòng nhập số điện thoại cha</p>";
-                                }
-								if(isset($errors) && in_array('txtSDTCha2',$errors))
-                                {
-                                    echo "<p class='text-danger'>Số điện thoại hợp lệ có 10 số</p>";
-                                }
-                                ?>
-								</div>
-								<?php
-								if(isset($errors) && in_array('parents',$errors))
+                        <div class="row parent-zone">
+                            <div class="title-absolute"><span>Thông tin phụ huynh</span></div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Tên cha</label>
+                                    <input class="form-control" name="txtTenCha" placeholder="Vui lòng nhập tên cha" value="<?php if(isset($_POST['txtTenCha'])) {echo $_POST['txtTenCha'];} ?>">
+                                    <?php
+                                        if(isset($errors) && in_array('txtTenCha',$errors))
+                                        {
+                                            echo "<p class='text-danger'>Bạn chưa nhập tên cha</p>";
+                                        }
+                                    ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số điện thoại cha</label>
+                                    <input class="form-control" maxlength="10" name="txtSDTCha" placeholder="Vui lòng nhập số điện thoại cha" value="<?php if(isset($_POST['txtSDTCha'])) {echo $_POST['txtSDTCha'];} ?>">
+                                    <?php
+                                        if(isset($errors) && in_array('txtSDTCha',$errors))
+                                        {
+                                            echo "<p class='text-danger'>Vui lòng nhập số điện thoại cha</p>";
+                                        }
+                                        if(isset($errors) && in_array('txtSDTCha2',$errors))
+                                        {
+                                            echo "<p class='text-danger'>Số điện thoại hợp lệ có 10 số</p>";
+                                        }
+                                    ?>
+                                </div>
+                                <?php
+                                if(isset($errors) && in_array('parents',$errors))
                                 {
                                     echo "<div class='footer-detail text-danger' style='float:left;font-size:13px;'><span>Bắt buộc phải nhập cha hoặc mẹ</span></div>";
-                                }?>	
-							</div>
-							<div class="col">
-								<div class="form-group">
-									<label>Tên mẹ</label>
-									<input class="form-control" name="txtTenMe" placeholder="Vui lòng nhập tên mẹ" value="<?php if(isset($_POST['txtTenMe'])) {echo $_POST['txtTenMe'];} ?>">
-									<?php 
-                                if(isset($errors) && in_array('txtTenMe',$errors))
-                                {
-                                    echo "<p class='text-danger'>Bạn chưa nhập tên mẹ</p>";
-                                }
-                            ?>
-								</div>
-								<div class="form-group" style="margin-bottom: 7px;">
-									<label>Số điện thoại mẹ</label>
-									<input class="form-control" name="txtSDTMe" placeholder="Vui lòng nhập số điện thoại mẹ" value="<?php if(isset($_POST['txtSDTMe'])) {echo $_POST['txtSDTMe'];} ?>">
-									<?php 
-                                if(isset($errors) && in_array('txtSDTMe',$errors))
-                                {
-                                    echo "<p class='text-danger'>Vui lòng nhập số điện thoại mẹ</p>";
-                                }
-								if(isset($errors) && in_array('txtSDTMe2',$errors))
-                                {
-                                    echo "<p class='text-danger'>Số điện thoại hợp lệ có 10 số</p>";
-                                }
-                                ?>
-								</div>															
-								<div class="footer-detail"><span>* Cho phép chỉ nhập cha hoặc mẹ</span></div>
-							</div>
-						</div>
+                                }?>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Tên mẹ</label>
+                                    <input class="form-control" name="txtTenMe" placeholder="Vui lòng nhập tên mẹ" value="<?php if(isset($_POST['txtTenMe'])) {echo $_POST['txtTenMe'];} ?>">
+                                    <?php
+                                    if(isset($errors) && in_array('txtTenMe',$errors))
+                                    {
+                                        echo "<p class='text-danger'>Bạn chưa nhập tên mẹ</p>";
+                                    }
+                                    ?>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 7px;">
+                                    <label>Số điện thoại mẹ</label>
+                                    <input class="form-control" maxlength="10" name="txtSDTMe" placeholder="Vui lòng nhập số điện thoại mẹ" value="<?php if(isset($_POST['txtSDTMe'])) {echo $_POST['txtSDTMe'];} ?>">
+                                    <?php
+                                        if(isset($errors) && in_array('txtSDTMe',$errors))
+                                        {
+                                            echo "<p class='text-danger'>Vui lòng nhập số điện thoại mẹ</p>";
+                                        }
+                                        if(isset($errors) && in_array('txtSDTMe2',$errors))
+                                        {
+                                            echo "<p class='text-danger'>Số điện thoại hợp lệ có 10 số</p>";
+                                        }
+                                    ?>
+                                </div>
+                                <div class="footer-detail"><span>* Cho phép chỉ nhập cha hoặc mẹ</span></div>
+                            </div>
+                        </div>
 
                         <!-- =========================== THÔNG TIN LOP HOC ===============================-->
                         <div class="row parent-zone">
@@ -459,7 +462,7 @@
                                 <div class="form-group">
                                     <label>Niên khóa</label>
                                     <select name="nien_khoa" id="" class="form-control">
-                                        <!--                                            <option value="0">Chọn Niên khóa</option>-->
+                                        <option value="0">Chọn Niên khóa</option>
                                         <?php foreach ($data_nien_khoa as $item):?>
                                             <option value="<?php echo $item['id']?>"><?php echo $item['ten_nien_khoa']?></option>
                                         <?php endforeach;?>
@@ -478,27 +481,29 @@
                                 <div class="form-group">
                                     <label>Lớp học</label>
                                     <select name="lop_hoc" id="" class="form-control" disabled>
+                                        <option value="0">Chọn lớp học</option>
                                         <?php foreach ($data_lop_hoc as $item):?>
                                             <option value="<?php echo $item['id']?>"><?php echo $item['mo_ta']?></option>
                                         <?php endforeach;?>
                                     </select>
 
                                     <?php
-                                    if(isset($errors) && in_array('lop_hoc',$errors))
-                                    {
-                                        echo "<p class='text-danger'>Bạn chưa chọn niên khóa</p>";
-                                    }
+                                        if(isset($errors) && in_array('lop_hoc',$errors))
+                                        {
+                                            echo "<p class='text-danger'>Bạn chưa chọn niên khóa</p>";
+                                        }
                                     ?>
                                 </div>
                             </div>
                         </div>
-                        <!-- =========================== END THÔNG TIN PHU HUYNH ===========================-->
+                        <!-- =========================== END THÔNG TIN LOP HOC ===========================-->
 
-						<br/>
-						<button name="btn-submit-be" type="submit" class="btn btn-info">Thêm Thông Tin</button>
-						<a href="admin-be.php" class="btn btn-warning">Quay về</a>
-					</form>
-				</div>
+                        <div class="row card-footer" style="padding-left: 0">
+                            <button name="btn-submit-be" type="submit" class="btn btn-info" style="margin-right: 5px;">Thêm Thông Tin</button>
+                            <a href="admin-be.php" class="btn btn-warning">Quay về</a>
+                        </div>
+                    </form>
+                </div>
 				<!-- End thêm loại tin -->
 			</div>
 		</div>
