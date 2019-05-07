@@ -98,3 +98,22 @@ if (isset($_POST['edit'])) {
         echo 1;
     } else echo -1;
 }
+
+
+//load danh sách bé theo lớp học
+if(isset($_POST['get_list_be_theo_lop_hoc']) && isset($_POST['lop_hoc_id'])) {
+    $query = mysqli_query($dbc, "SELECT * FROM be WHERE id IN (SELECT be_id FROM lophoc_be WHERE lophoc_be.lop_hoc_chi_tiet_id = {$_POST['lop_hoc_id']})");
+
+    $result = array();
+
+    if (mysqli_num_rows($query) > 0)
+    {
+        while ($row = mysqli_fetch_array($query)){
+            $result[] = array(
+                'id' => $row['id'],
+                'mo_ta' => $row['ten']
+            );
+        }
+    }
+    echo json_encode($result);
+}
