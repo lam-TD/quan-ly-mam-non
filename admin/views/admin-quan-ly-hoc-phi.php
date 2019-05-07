@@ -422,12 +422,12 @@ if ($nien_khoa > 0 && $lop_hoc > 0 && $be) {
 
     });
 
-    $( '.select-be' ).select2( {
-        placeholder: {
-            id: '',
-            text: 'Danh sách bé'
-        }
-    } );
+    // $( '.select-be' ).select2( {
+    //     placeholder: {
+    //         id: '',
+    //         text: 'Danh sách bé'
+    //     }
+    // } );
 
     $( '.select-nhannien-edit' ).select2( {
         placeholder: {
@@ -640,7 +640,14 @@ if ($nien_khoa > 0 && $lop_hoc > 0 && $be) {
             success: function (result) {
                 var data = JSON.parse(result);
                 console.log(data);
-                $('.select-be').select2('data', data, true);
+                var str = "";
+                if(data.length > 0) {
+                    data.forEach(function(item) {
+                        str += '<option value="+ item.id +">'+ item.mo_ta +'</option>';
+                    })
+                }
+                if(str) $('select[name="be"]').html(str);
+                else $('select[name="be"]').html('<option value="all">Không có bé nào trong lớp này</option>')
             }
         });
     }
