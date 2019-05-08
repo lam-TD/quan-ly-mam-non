@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="310ffe78-35c4-47af-b0d9-fd538e883e60" name="Default Changelist" comment="update form be + add them phan lop hoc">
+    <list default="true" id="310ffe78-35c4-47af-b0d9-fd538e883e60" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/admin/views/admin-len-menu-xuly.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/views/admin-len-menu.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/admin-left-menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/admin-left-menu.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/views/admin-lop.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/admin-lop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/views/admin-nhanvien.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/admin-nhanvien.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/views/admin-quan-ly-hoc-phi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/admin-quan-ly-hoc-phi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/admin-xuly-lop.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/admin-xuly-lop.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,44 +17,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/views/admin-lop.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="257" column="74" selection-start-line="257" selection-start-column="74" selection-end-line="257" selection-end-column="74" />
+            <state relative-caret-position="405">
+              <caret line="234" column="57" lean-forward="true" selection-start-line="220" selection-start-column="48" selection-end-line="234" selection-end-column="57" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#22306#22925#0#HTML" />
+                <element signature="e#22966#23391#0#HTML" />
+                <element signature="e#23423#24279#0#HTML" />
+                <element signature="e#24313#25044#0#HTML" />
+                <element signature="e#25078#26045#0#HTML" />
+                <element signature="e#27080#27333#0#HTML" />
+                <element signature="e#27364#28180#0#HTML" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/views/admin-len-menu.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="553" column="52" selection-start-line="553" selection-start-column="52" selection-end-line="553" selection-end-column="52" />
+              <folding>
                 <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+                <element signature="e#17640#18277#0#HTML" />
+                <element signature="e#26630#27341#0#HTML" />
+                <element signature="e#27481#28192#0#HTML" />
+                <element signature="e#28251#28962#0#HTML" />
+                <element signature="e#29341#30157#0#HTML" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views/admin-quan-ly-hoc-phi.php">
+        <entry file="file://$PROJECT_DIR$/admin/views/admin-len-menu-xuly.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-              <folding>
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#15571#15831#0#PHP" />
-                <element signature="n#style#0;n#span#0;n#td#6;n#tr#1;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="e#20641#21088#0#HTML" />
-                <element signature="e#22001#22577#0#HTML" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views/admin-xuly-lop.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="104" column="152" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="152" />
+            <state relative-caret-position="345">
+              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -62,33 +71,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2925">
               <caret line="195" column="108" selection-start-line="195" selection-start-column="74" selection-end-line="195" selection-end-column="108" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views/admin-be-them.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8070">
-              <caret line="538" column="5" selection-start-line="516" selection-start-column="4" selection-end-line="538" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views/admin-be-sua.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7035">
-              <caret line="469" column="52" selection-start-line="469" selection-start-column="52" selection-end-line="469" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views/admin-be-xuly.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="30" selection-start-line="6" selection-start-column="4" selection-end-line="19" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -113,7 +95,12 @@
       <find>id_lop_hoc</find>
       <find>get_data_be_theo_lop</find>
       <find>thanh_toan</find>
+      <find>submit_menu</find>
+      <find>tbody-week-1</find>
     </findStrings>
+    <replaceStrings>
+      <replace>submit_menu</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -125,7 +112,6 @@
         <option value="$PROJECT_DIR$/admin/views/doimatkhau.php" />
         <option value="$PROJECT_DIR$/admin/views/views/admin-be-sua.php" />
         <option value="$PROJECT_DIR$/admin/styles/admin/style.css" />
-        <option value="$PROJECT_DIR$/admin/views/admin-footer.php" />
         <option value="$PROJECT_DIR$/admin/views/admin-header.php" />
         <option value="$PROJECT_DIR$/css/mystyle.css" />
         <option value="$PROJECT_DIR$/admin/views/admin-be-xuly.php" />
@@ -134,11 +120,14 @@
         <option value="$PROJECT_DIR$/admin/views/admin-be-sua.php" />
         <option value="$PROJECT_DIR$/header.php" />
         <option value="$PROJECT_DIR$/tra-cuu.php" />
-        <option value="$PROJECT_DIR$/admin/views/admin-left-menu.php" />
-        <option value="$PROJECT_DIR$/admin/views/admin-xuly-lop.php" />
         <option value="$PROJECT_DIR$/admin/views/admin-nhanvien.php" />
         <option value="$PROJECT_DIR$/admin/views/admin-quan-ly-hoc-phi.php" />
+        <option value="$PROJECT_DIR$/admin/views/admin-footer.php" />
+        <option value="$PROJECT_DIR$/admin/views/admin-xuly-lop.php" />
+        <option value="$PROJECT_DIR$/admin/views/admin-left-menu.php" />
         <option value="$PROJECT_DIR$/admin/views/admin-lop.php" />
+        <option value="$PROJECT_DIR$/admin/views/admin-len-menu-xuly.php" />
+        <option value="$PROJECT_DIR$/admin/views/admin-len-menu.php" />
       </list>
     </option>
   </component>
@@ -157,6 +146,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,7 +169,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -224,7 +213,8 @@
       <workItem from="1557229003148" duration="644000" />
       <workItem from="1557238374151" duration="623000" />
       <workItem from="1557242928624" duration="73000" />
-      <workItem from="1557279642031" duration="12180000" />
+      <workItem from="1557279642031" duration="12316000" />
+      <workItem from="1557300501612" duration="12206000" />
     </task>
     <task id="LOCAL-00001" summary="load list lop hoc, insert lop hoc">
       <created>1557042636531</created>
@@ -282,11 +272,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557229460066</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update form be + add them phan lop hoc">
+      <created>1557291858708</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1557291858708</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72403000" />
+    <option name="totallyTimeSpent" value="84745000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1376" height="754" extended-state="6" />
@@ -354,25 +351,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/admin-footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="8" column="87" selection-start-line="8" selection-start-column="87" selection-end-line="8" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore" />
     <entry file="file://$PROJECT_DIR$/admin/styles/admin/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/admin-header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="28" column="93" selection-start-line="28" selection-start-column="93" selection-end-line="28" selection-end-column="93" />
         </state>
       </provider>
     </entry>
@@ -421,24 +404,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/admin-left-menu.php">
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-nhanvien.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="268" column="104" selection-start-line="268" selection-start-column="104" selection-end-line="268" selection-end-column="104" />
+        <state relative-caret-position="214">
+          <caret line="121" column="163" selection-start-line="121" selection-start-column="140" selection-end-line="121" selection-end-column="163" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/admin-be.php">
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-quan-ly-hoc-phi.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2925">
-          <caret line="195" column="108" selection-start-line="195" selection-start-column="74" selection-end-line="195" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/admin-be-them.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8070">
-          <caret line="538" column="5" selection-start-line="516" selection-start-column="4" selection-end-line="538" selection-end-column="5" />
+        <state relative-caret-position="900">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>
@@ -456,45 +432,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/admin-nhanvien.php">
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="121" column="163" selection-start-line="121" selection-start-column="140" selection-end-line="121" selection-end-column="163" />
+        <state relative-caret-position="364">
+          <caret line="28" column="93" selection-start-line="28" selection-start-column="93" selection-end-line="28" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/myjs.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-645">
+          <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-be-them.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="538" column="5" selection-start-line="516" selection-start-column="4" selection-end-line="538" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-be.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2925">
+          <caret line="195" column="108" selection-start-line="195" selection-start-column="74" selection-end-line="195" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-left-menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="230" column="26" lean-forward="true" selection-start-line="230" selection-start-column="26" selection-end-line="230" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#a#0;n#ul#0;n#div#1;n#div#4;n#div#0;n#ul#0;n#div#1;n#aside#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#ul#0;n#div#1;n#div#6;n#div#0;n#ul#0;n#div#1;n#aside#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/views/admin-xuly-lop.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="104" column="152" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="152" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/admin-quan-ly-hoc-phi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#15571#15831#0#PHP" />
-            <element signature="n#style#0;n#span#0;n#td#6;n#tr#1;n#tbody#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="e#20641#21088#0#HTML" />
-            <element signature="e#22001#22577#0#HTML" />
-          </folding>
+        <state relative-caret-position="30">
+          <caret line="2" column="35" lean-forward="true" selection-start-line="1" selection-end-line="2" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/views/admin-lop.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="257" column="74" selection-start-line="257" selection-start-column="74" selection-end-line="257" selection-end-column="74" />
+        <state relative-caret-position="405">
+          <caret line="234" column="57" lean-forward="true" selection-start-line="220" selection-start-column="48" selection-end-line="234" selection-end-column="57" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#22306#22925#0#HTML" />
+            <element signature="e#22966#23391#0#HTML" />
+            <element signature="e#23423#24279#0#HTML" />
+            <element signature="e#24313#25044#0#HTML" />
+            <element signature="e#25078#26045#0#HTML" />
+            <element signature="e#27080#27333#0#HTML" />
+            <element signature="e#27364#28180#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-len-menu-xuly.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/admin-len-menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="553" column="52" selection-start-line="553" selection-start-column="52" selection-end-line="553" selection-end-column="52" />
+          <folding>
             <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="e#17640#18277#0#HTML" />
+            <element signature="e#26630#27341#0#HTML" />
+            <element signature="e#27481#28192#0#HTML" />
+            <element signature="e#28251#28962#0#HTML" />
+            <element signature="e#29341#30157#0#HTML" />
           </folding>
         </state>
       </provider>

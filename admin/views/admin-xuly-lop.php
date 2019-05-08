@@ -117,3 +117,24 @@ if(isset($_POST['get_list_be_theo_lop_hoc']) && isset($_POST['lop_hoc_id'])) {
     }
     echo json_encode($result);
 }
+
+// thêm mới niên khóa
+if (isset($_POST['add_nien_khoa'])) {
+    $date_start = isset($_POST['date_start']) ? (int)$_POST['date_start'] : 0;
+    $date_end = isset($_POST['date_end']) ? (int)$_POST['date_end'] : 0;
+
+    if ($date_end - $date_start == 1) {
+        $ten_nien_khoa = $date_start . "-" . $date_end;
+
+        // Kiểm tra niên khóa tồn tại hay chưa
+        $old_nk = mysqli_query($dbc, "SELECT * FROM nienkhoa WHERE ten_nien_khoa = '{$ten_nien_khoa}'");
+        if (count(mysqli_fetch_all($old_nk)) > 0) {
+            echo -3;
+        } else {
+            mysqli_query($dbc, "INSERT INTO nienkhoa (ten_nien_khoa, nam_ket_thuc) VALUES ('{$ten_nien_khoa}', {$date_end})");
+            if (mysqli_affected_rows($dbc) == 1) {
+                echo 1;
+            } else echo "INSERT INTO nienkhoa (ten_nien_khoa) VALUES ('{$ten_nien_khoa}')";
+        }
+    } else echo -2;
+}

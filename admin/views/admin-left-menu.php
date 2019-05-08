@@ -242,14 +242,14 @@
 				</div>
 				<div class="panel panel-default" id="heading4">
 					<div class="panel-heading" data-toggle="collapse" data-target="#collapse4" aria-controls="collapse4">
-						<h4 class="panel-title"><span class="glyphicon glyphicon-briefcase" style="margin-right: 6px; top: 2px"></span>
-          Quản lý cấp dưỡng
-        </h4>
+                        <h4 class="panel-title"><span class="glyphicon glyphicon-briefcase" style="margin-right: 6px; top: 2px"></span>
+                            Quản lý cấp dưỡng
+                        </h4>
 					
 					</div>
 					<div id="collapse4" class="panel-collapse collapse" aria-labelledby="heading4" data-parent="#accordion">
 						<ul class="list-group">
-							<a class="list-group-item cus-collapse-item" href="#"><span class="glyphicon glyphicon-menu-right" style="top: 0.5px;margin-right: 5px;font-size: 12px"></span>Lên menu</a>
+							<a class="list-group-item cus-collapse-item" href="admin-len-menu.php"><span class="glyphicon glyphicon-menu-right" style="top: 0.5px;margin-right: 5px;font-size: 12px"></span>Lên menu</a>
 							<a class="list-group-item cus-collapse-item" href="#"><span class="glyphicon glyphicon-menu-right" style="top: 0.5px;margin-right: 5px;font-size: 12px"></span>Nhập nguyên liệu</a>
 						</ul>
 					</div>

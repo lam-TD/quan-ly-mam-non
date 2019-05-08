@@ -7,9 +7,9 @@
 
 <!-- End header-->
 <script>
-    $('#heading1 .panel-heading').attr('aria-expanded','true');
-    $('#collapse1').addClass('show');
-    $('#collapse1 .list-group a:nth-child(1)').addClass('cus-active');
+    $('#heading5 .panel-heading').attr('aria-expanded','true');
+    $('#collapse5').addClass('show');
+    $('#collapse5 .list-group a:nth-child(2)').addClass('cus-active');
 </script>
 
 <style>
@@ -22,11 +22,12 @@
     $results_lop_hoc = mysqli_query($dbc,"SELECT * FROM lophoc");
 
     // lấy danh sách niên khóa
-    $results_nien_khoa = mysqli_query($dbc,"SELECT * FROM nienkhoa");
+    $results_nien_khoa = mysqli_query($dbc,"SELECT * FROM nienkhoa ORDER BY nam_ket_thuc DESC");
 
     // Lấy danh sách nhân viên
     $results_nhan_vien_them_moi = mysqli_query($dbc,"SELECT id, ho_ten FROM nhanvien WHERE id NOT IN (SELECT nhan_vien_id FROM lophoc_nhanvien)");
     $results_nhan_vien_cap_nhat = mysqli_query($dbc,"SELECT id, ho_ten FROM nhanvien");
+
 ?>
 
 <!-- Page content-->
@@ -207,14 +208,14 @@
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Thông tin lớp học</h4>
+                                    <h4 class="modal-title">Thông tin niên khóa</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body">
                                     <input id="id_chi_tiet_lop_hoc" type="hidden" value="">
                                     <form action="" method="post">
                                         <div class="row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-4">
                                                 <label style="display:block">Năm bắt đầu <span class="dot-required">*</span></label>
                                                 <input name="date_start" onkeyup="check_ten_lop(this)" maxlength="255" type="text" class="form-control date-start">
                                                 <script type="text/javascript">
@@ -224,17 +225,17 @@
                                                             viewMode: "years",
                                                             minViewMode: "years",
                                                             autoclose: true
-                                                        }).on("change", function() {
+                                                        }).on("change", function () {
                                                             var date = new Date($(this).val());
                                                             date.setFullYear(date.getFullYear() + 1);
 
                                                             $('.date-end').datepicker('setDate', date);
-                                                        });;
-                                                    })
+                                                        });
+                                                    });
                                                 </script>
                                             </div>
 
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-4">
                                                 <label style="display:block">Năm kết thúc <span class="dot-required">*</span></label>
                                                 <input name="date_end" onkeyup="check_ten_lop(this)" maxlength="255" type="text" class="form-control date-end">
                                                 <small style="display: none" class="error-message">Tên lớp này đã tồn tại</small>
@@ -243,25 +244,52 @@
                                                         $('.date-end').datepicker({
                                                             format: "yyyy",
                                                             viewMode: "years",
-                                                            minViewMode: "years",
-                                                            autoclose: true,
-                                                        }).on("change", function() {
+                                                            minViewMode: "years"
+                                                        }).on("change", function () {
                                                             var date = new Date($(this).val());
                                                             date.setFullYear(date.getFullYear() - 1);
 
                                                             $('.date-start').datepicker('setDate', date);
-                                                        });;
-                                                    })
+                                                            $('.date-end').Close();
+                                                        });
+                                                    });
                                                 </script>
                                             </div>
 
-                                            <input type="hidden" name="add">
+                                            <div class="form-group col-md-4" style="padding-left: 0">
+                                                <label style="color: transparent">aaaaaa</label>
+                                                <div class="w-100">
+                                                    <button id="btn-save" onclick="insert_nien_khoa()" type="button" class="btn btn-success w-75" style="float: right">Thêm mới</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="text-center">Danh sách niên khóa</h5>
+                                        </div>
+                                        <div class="col-md-12" style="max-height: 360px; overflow-y: auto;">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 50px">TT</th>
+                                                    <th class="text-center">Niên khóa</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($results_nien_khoa as $index => $item):?>
+                                                    <tr>
+                                                        <td class="text-center"><?php echo $index += 1;?></td>
+                                                        <td class="text-center"><?php echo $item['ten_nien_khoa']?></td>
+                                                    </tr>
+                                                    <?php endforeach;?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button id="btn-save" onclick="submit_lop_hoc()" type="button" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Lưu lại</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -568,6 +596,28 @@
         else $('.e-4').hide();
 
         return 1;
+    }
+
+    function insert_nien_khoa() {
+        var date_start = $('.date-start').val();
+        var date_end   = $('.date-end').val();
+        if(!date_start || !date_end) {
+            alert("Vui lòng nhập đủ thông tin để thêm niên khóa");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: 'admin-xuly-lop.php',
+            data: { add_nien_khoa: 1, date_start: $('.date-start').val(), date_end: $('.date-end').val() },
+            success: function (result) {
+                if (result == "1") alert("Thêm mới niên khóa thành công!");
+                else if(result == "-2") alert("Năm bắt đầu phải lớn hơn năm kết thúc")
+                else if (result == "-3") alert("Niên khóa này đã tồn tại");
+                else alert("Lỗi không không thêm được niên khóa");
+                location.reload();
+            }
+        });
     }
 </script>
 
