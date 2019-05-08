@@ -118,7 +118,9 @@ if(isset($_GET['changeStatusId']) && filter_var($_GET['changeStatusId'],FILTER_V
 										<a href="admin-nhanvien-xem.php?id=<?php echo $item['id']; ?>"><i class="material-icons action-icon">edit</i></a>
 									</td>
 									<td>
-										<a href="javascript:changeStatusEmp(<?php echo $item['id']; ?>);" onclick="return confirm('Bạn có muốn <?php if($item['trangthai']) echo 'vô hiệu hoá'; else echo 'kích hoạt' ?> <?php echo '&quot;'.$item['ho_ten'].'&quot;'; ?>')" class="change-status-btn"><i class="material-icons action-icon"><?php if($item['trangthai']) echo 'check_box'; else echo 'check_box_outline_blank' ?></i></a>
+										<a href="javascript:changeStatusEmp(<?php echo $item['id']; ?>);" onclick="return confirm('Bạn có muốn <?php if($item['trangthai']) echo 'vô hiệu hoá'; else echo 'kích hoạt' ?> <?php echo '&quot;'.$item['ho_ten'].'&quot;'; ?>')" class="change-status-btn">
+                                            <i class="material-icons action-icon"><?php if($item['trangthai']) echo 'check_box'; else echo 'check_box_outline_blank' ?></i>
+                                        </a>
 									</td>
 							</tr>
 						</tbody>

@@ -1,6 +1,10 @@
 <?php include "admin-header.php";?>
 <?php include "../../inc/myconnect.php";?>
 <?php include "../../inc/myfunction.php";?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
 <!-- End header-->
 <script>
     $('#heading1 .panel-heading').attr('aria-expanded','true');
@@ -126,6 +130,7 @@
                     <form action="admin-loaitin.php" method="get">
                         <h5 class="text-info">Danh sách lớp học</h5>
                         <button id="btn-show-add" type="button" name="them" data-toggle="modal" data-target="#myModal" class="btn btn-info">Thêm mới lớp học</button>
+                        <button id="btn-show-add-nien-khoa" type="button" name="them" data-toggle="modal" data-target="#Modal_NIEN_KHOA" class="btn btn-success">Thêm mới niên khóa</button>
                     </form>
 
                     <!-- Modal -->
@@ -184,6 +189,76 @@
                                         </select>
                                         <small style="display: none" class="error-message e-4"><i>Số lượng bắt buộc từ 2-3 nhân viên</i></small>
                                     </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btn-save" onclick="submit_lop_hoc()" type="button" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Lưu lại</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- ================= Modal NIEN KHÓA ============== -->
+                    <div id="Modal_NIEN_KHOA" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Thông tin lớp học</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <input id="id_chi_tiet_lop_hoc" type="hidden" value="">
+                                    <form action="" method="post">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label style="display:block">Năm bắt đầu <span class="dot-required">*</span></label>
+                                                <input name="date_start" onkeyup="check_ten_lop(this)" maxlength="255" type="text" class="form-control date-start">
+                                                <script type="text/javascript">
+                                                    $(document).ready(function () {
+                                                        $('.date-start').datepicker({
+                                                            format: "yyyy",
+                                                            viewMode: "years",
+                                                            minViewMode: "years",
+                                                            autoclose: true
+                                                        }).on("change", function() {
+                                                            var date = new Date($(this).val());
+                                                            date.setFullYear(date.getFullYear() + 1);
+
+                                                            $('.date-end').datepicker('setDate', date);
+                                                        });;
+                                                    })
+                                                </script>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label style="display:block">Năm kết thúc <span class="dot-required">*</span></label>
+                                                <input name="date_end" onkeyup="check_ten_lop(this)" maxlength="255" type="text" class="form-control date-end">
+                                                <small style="display: none" class="error-message">Tên lớp này đã tồn tại</small>
+                                                <script type="text/javascript">
+                                                    $(document).ready(function () {
+                                                        $('.date-end').datepicker({
+                                                            format: "yyyy",
+                                                            viewMode: "years",
+                                                            minViewMode: "years",
+                                                            autoclose: true,
+                                                        }).on("change", function() {
+                                                            var date = new Date($(this).val());
+                                                            date.setFullYear(date.getFullYear() - 1);
+
+                                                            $('.date-start').datepicker('setDate', date);
+                                                        });;
+                                                    })
+                                                </script>
+                                            </div>
+
+                                            <input type="hidden" name="add">
+                                        </div>
+                                    </form>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button id="btn-save" onclick="submit_lop_hoc()" type="button" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Lưu lại</button>
